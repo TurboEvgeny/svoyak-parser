@@ -2,10 +2,17 @@
 # -*- coding: utf-8 -*-
 import sys
 import requests
+from bs4 import BeautifulSoup
 
 if (len(sys.argv) < 2):
     print("не введен адрес страницы")
     exit()
 url = sys.argv[1]
 r = requests.get(url)
-print (r.text)
+soup = BeautifulSoup(r.text,"html.parser")
+tags = soup.find_all("h4")
+for element in tags:
+    question = element.find('span', {"class" : "mw-headline"})
+    # узнаем тему и количество баллов
+    id_text = question["id"]
+    print(id_text)
