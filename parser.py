@@ -11,8 +11,10 @@ url = sys.argv[1]
 r = requests.get(url)
 soup = BeautifulSoup(r.text,"html.parser")
 tags = soup.find_all("h4")
+questionsData = []
 for element in tags:
     question = element.find('span', {"class" : "mw-headline"})
     # узнаем тему и количество баллов
-    id_text = question["id"]
-    print(id_text)
+    questionsData.append(question["id"])
+
+print("questions number", len(questionsData)) 
