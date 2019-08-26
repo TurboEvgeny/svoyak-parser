@@ -1,6 +1,7 @@
 #! /use/bin/env/python
 # -*- coding: utf-8 -*-
 import sys
+import re
 import requests
 from bs4 import BeautifulSoup
 
@@ -15,6 +16,8 @@ questionsData = []
 for element in tags:
     question = element.find('span', {"class" : "mw-headline"})
     # узнаем тему и количество баллов
-    questionsData.append(question["id"])
-
-print("questions number", len(questionsData)) 
+    match = re.search(r"\((.*)\)", question.text)
+    if (match):
+        print(match.group(1))
+    else:
+        print("no match") 
