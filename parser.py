@@ -18,6 +18,7 @@ for element in tags:
     # узнаем тему и количество баллов
     match = re.search(r"\((.*)\)", question.text)
     if (match):
-        print(match.group(1))
+        value = int(match.group(1).replace(" ", ""))
+        print(value)
     else:
         print("no match") 
