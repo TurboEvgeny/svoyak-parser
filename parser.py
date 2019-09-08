@@ -16,9 +16,13 @@ questionsData = []
 for element in tags:
     question = element.find('span', {"class" : "mw-headline"})
     # узнаем тему и количество баллов
+    print(question.text)
     match = re.search(r"\((.*)\)", question.text)
     if (match):
-        value = int(match.group(1).replace(" ", ""))
+        valueStr = match.group(1)
+        theme = re.sub(r"\((.*)\)", "", question.text)
+        value = int(valueStr.replace(" ", ""))
+        print(theme)
         print(value)
     else:
         print("no match") 
