@@ -1,2 +1,2 @@
 Проект, позволяющий парсить вопросы и ответы с отчетом игры "Своя игра"
-Написан с помощью python3
+Written with python2 (because of bs4 package dependency)
