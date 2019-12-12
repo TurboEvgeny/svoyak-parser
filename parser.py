@@ -22,11 +22,11 @@ for element in tags:
         valueStr = match.group(1)
         theme = re.sub(r"\((.*)\)", "", question.text)
         value = int(valueStr.replace(" ", ""))
-        #print("-question-")
         print("%s- %s" % (theme, value))
-        #nextTag = element.next_sibling
-        #print("-body-")
-        #print(element)
-        #print(nextTag)
+        print("-question-")
+        nextTag = element.next_sibling.next_sibling
+        if (nextTag.name == 'p'):
+            print(nextTag.get_text())
+        #print("-question-")
         #print(nextTag.next_sibling)
         #print("---")
