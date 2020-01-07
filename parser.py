@@ -22,17 +22,25 @@ for element in tags:
         valueStr = match.group(1)
         theme = re.sub(r"\((.*)\)", "", question.text)
         value = int(valueStr.replace(" ", ""))
-        print("%s- %s" % (theme, value))
-        print("-question-")
         maxDepth = 4
         currentSibling = element.next_sibling;
+        # для логирования запоминаем все строки на каждой итерации
+        logStrings = []
         # ищем текст вопроса
         for i in range (maxDepth):
             nextTag = currentSibling.next_sibling
+            logStrings.append(nextTag.get_text())
             if (nextTag.name == 'p'):
-                print(nextTag.get_text())
+                #print(logStrings)
+                #print("%s- %s" % (theme, value))
+                #print("-question-")
+                #print(nextTag.get_text())
                 break
             else:
+                if (i == (maxDepth - 1)):
+                    print("%s- %s" % (theme, value))
+                    print("fail")
+                    print(logStrings)
                 currentSibling = nextTag
         #print("-question-")
         #print(nextTag.next_sibling)
