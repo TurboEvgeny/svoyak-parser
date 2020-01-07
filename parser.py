@@ -24,9 +24,16 @@ for element in tags:
         value = int(valueStr.replace(" ", ""))
         print("%s- %s" % (theme, value))
         print("-question-")
-        nextTag = element.next_sibling.next_sibling
-        if (nextTag.name == 'p'):
-            print(nextTag.get_text())
+        maxDepth = 4
+        currentSibling = element.next_sibling;
+        # ищем текст вопроса
+        for i in range (maxDepth):
+            nextTag = currentSibling.next_sibling
+            if (nextTag.name == 'p'):
+                print(nextTag.get_text())
+                break
+            else:
+                currentSibling = nextTag
         #print("-question-")
         #print(nextTag.next_sibling)
         #print("---")
